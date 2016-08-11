@@ -82,15 +82,11 @@ MCU_FLAGS = -mcpu=cortex-m4 \
 
 CFLAGS = -c $(MCU_FLAGS) $(DEFS) $(INCLUDES)
 
-# Startup cannot be distributed, due to restrictive TI License.
-# This uses Example startup by pulling it from a TI example directly.
-STARTUP_SCRIPT = ../tivaware/examples/boards/ek-tm4c123gxl/hello/startup_gcc.c
+# Startup copied from Project in Tivaware
+STARTUP_SCRIPT = ./startup_gcc.c
 
-# Loadscript cannot be distributed, due to restrictive TI License.
-# This uses Example loadscript by pulling it from a TI example directly.
-LD_SCRIPT = ../tivaware/examples/boards/ek-tm4c123gxl/hello/hello.ld
-# LDFLAGS = -T $(LD_SCRIPT) --specs=nosys.specs $(MCU_FLAGS) -Wl,-gc-sections \
-	
+# Linker Script copied from Project in Tivaware
+LD_SCRIPT = ./project.ld
 LDFLAGS = -T $(LD_SCRIPT) \
 		  --entry ResetISR \
 		  --gc-sections
